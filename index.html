@@ -1,0 +1,197 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {},
+      };
+    </script>
+    <title>Advanced QrCode Generator</title>
+  </head>
+  <body class="overflow-x-hidden text-white text-xl">
+    <nav
+      class="fixed top-0 left-0 w-screen h-auto bg-[#432E54] p-4 px-6 flex justify-between text-white font-bold"
+    >
+      <h1><a href="../index.html">Qr Master</a></h1>
+      <div>
+        <a href="./pages/ReadQr.html">Qr Reader</a>
+      </div>
+    </nav>
+    <main
+      class="min-h-screen w-screen bg-[#0B192C] text-center text-white flex mt-12 flex-col"
+    >
+      <h1 class="md:text-3xl text-xl mt-4 text-center mx-auto font-bold pt-2">
+        QR Code Generator: Create your Free QR Code
+      </h1>
+      <section
+        class="flex w-[90vw] mx-auto text-center flex-col gap-4 rounded-lg mt-4 p-4"
+      >
+        <div class="flex gap-2 mt-3 text-xl font-mono">
+          <button
+            data-target="url"
+            class="hover:bg-blue-600 px-3 py-2 transition-all duration-150 rounded-lg bg-blue-600 acitve button"
+          >
+            Url
+          </button>
+          <button
+            data-target="text"
+            class="hover:bg-blue-600 px-3 py-2 transition-all duration-150 rounded-lg button"
+          >
+            Text
+          </button>
+          <button
+            data-target="wifi"
+            class="hover:bg-blue-600 px-3 py-2 transition-all duration-150 rounded-lg button"
+          >
+            Wifi
+          </button>
+          <button
+            data-target="email"
+            class="hover:bg-blue-600 px-3 py-2 transition-all duration-150 rounded-lg button"
+          >
+            Email
+          </button>
+        </div>
+
+        <!-- Url Qr Section -->
+        <div
+          id="url"
+          class="QrGeneration text-left grid md:grid-cols-2 grid-cols-1 gap-1"
+        >
+          <form id="UrlQr" class="flex w-1/2 flex-col gap-2">
+            <label for="urlInput">Enter Url * </label>
+            <input
+              id="urlInput"
+              class="font-serif text-black py-3 px-2 border-none outline-none rounded text-xs"
+              required
+              type="url"
+            />
+          </form>
+          <div class="w-1/2 flex justify-center items-center gap-2 flex-col">
+            <img class="" id="UrlQrImage" src="" /><button
+              id="UrlQrDownload"
+              class="bg-green-600 text-sm text-white py-2 px-3 rounded-lg mt-2 hidden disabled:bg-green-300"
+            >
+              Download QR Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Text Qr Section -->
+        <div
+          id="text"
+          class="QrGeneration text-left grid grid-cols-1 md:grid-cols-2"
+        >
+          <form id="textForm" class="flex w-1/2 flex-col gap-2">
+            <label for="textInput">Enter Text </label>
+            <textarea
+              id="textInput"
+              placeholder="Enter text (write minimum 10 words)"
+              class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs resize-none"
+              required
+              type="text"
+              minlength="10"
+              rows="15"
+            ></textarea>
+          </form>
+          <div class="w-1/2 flex justify-center items-center gap-2 flex-col">
+            <img id="textQr" src="" />
+            <button
+              id="textQrDownload"
+              class="bg-green-600 text-sm text-white py-2 px-3 rounded-lg mt-2 hidden disabled:bg-green-300"
+            >
+              Download QR Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Wifi Qr Section -->
+        <div
+          id="wifi"
+          class="QrGeneration text-left grid md:grid-cols-2 grid-cols-1"
+        >
+          <form id="wifiForm" class="flex w-1/2 flex-col gap-2">
+            <div class="flex flex-col gap-2">
+              <label for="wifiName">Wifi Name * </label>
+              <input
+                id="wifiName"
+                class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs"
+                required
+                type="text"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="wifiPass">Wifi Password * </label>
+              <input
+                id="wifiPass"
+                class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs"
+                required
+                type="password"
+              />
+            </div>
+          </form>
+          <div class="w-1/2 flex justify-center items-center gap-2 flex-col">
+            <img class="" id="wifiQrImage" src="" /><button
+              id="wifiQrDownload"
+              class="bg-green-600 text-sm text-white py-2 px-3 rounded-lg mt-2 hidden disabled:bg-green-300"
+            >
+              Download QR Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Email Qr Section -->
+        <div id="email" class="QrGeneration">
+          <div
+            id="emailSection"
+            class="text-left grid grid-cols-1 md:grid-cols-2"
+          >
+            <form id="emailForm" class="flex w-1/2 flex-col gap-2">
+              <div class="flex flex-col gap-2">
+                <label for="emailId">Email * </label>
+                <input
+                  id="emailId"
+                  class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs"
+                  required
+                  type="email"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="emailTitle">Email Title * </label>
+                <input
+                  id="emailTitle"
+                  class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs"
+                  required
+                  type="text"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="emailSub">Email Subject * </label>
+                <textarea
+                  id="emailSub"
+                  class="font-serif max-w-md text-black py-3 px-2 border-none outline-none rounded text-xs resize-none"
+                  required
+                  type="text"
+                  rows="12"
+                ></textarea>
+              </div>
+            </form>
+            <div class="w-1/2 flex justify-center items-center gap-2 flex-col">
+              <img class="" id="emailQrImage" src="" /><button
+                id="emailQrDownload"
+                class="bg-green-600 text-sm text-white py-2 px-3 rounded-lg mt-2 hidden disabled:bg-green-300"
+              >
+                Download QR Code
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
